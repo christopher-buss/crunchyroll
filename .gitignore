@@ -14,3 +14,6 @@ crunchyroll.rbxm
 benches/mirrors
 
 globalTypes.d.luau
+
+node_modules
+.eslintcache
