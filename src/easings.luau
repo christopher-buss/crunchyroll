@@ -127,14 +127,23 @@ return {
 	constant = constant,
 
 	cubic_in = cubic_in,
+	cubicIn = cubic_in,
 	cubic_out = cubic_out,
+	cubicOut = cubic_out,
 	cubic_in_out = cubic_in_out,
+	cubicInOut = cubic_in_out,
 
 	bounce_in = bounce_in,
+	bounceIn = bounce_in,
 	bounce_out = bounce_out,
+	bounceOut = bounce_out,
 	bounce_in_out = bounce_in_out,
+	bounceInOut = bounce_in_out,
 
 	elastic_in = elastic_in,
+	elasticIn = elastic_in,
 	elastic_out = elastic_out,
+	elasticOut = elastic_out,
 	elastic_in_out = elastic_in_out,
+	elasticInOut = elastic_in_out,
 }

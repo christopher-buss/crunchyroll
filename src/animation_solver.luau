@@ -183,6 +183,7 @@ end
 
 return {
 	solve_fade_time_influence = solve_fade_time_influence,
+	solveFadeTimeInfluence = solve_fade_time_influence,
 
 	solver = animation_solver,
 }
