@@ -170,4 +170,6 @@ function animation_asset.load_keyframe_sequence(
 	}
 end
 
+animation_asset.loadKeyframeSequence = animation_asset.load_keyframe_sequence
+
 return animation_asset

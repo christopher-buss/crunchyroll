@@ -80,4 +80,5 @@ end
 
 return {
 	create_rig = create_rig,
+	createRig = create_rig,
 }

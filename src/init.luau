@@ -104,7 +104,10 @@ export type AnimationAsset = animation_asset.Identity
 
 return {
 	load_keyframe_sequence = animation_asset.load_keyframe_sequence,
+	loadKeyframeSequence = animation_asset.load_keyframe_sequence,
 	create_rig = rig.create_rig,
+	createRig = rig.create_rig,
 
 	solve_animation = animation_solver.solver,
+	solveAnimation = animation_solver.solver,
 }
