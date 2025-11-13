@@ -1,0 +1,25 @@
+{
+	"name": "@rbxts/crunchyroll",
+	"version": "0.0.1",
+	"description": "A custom animation solver for Roblox.",
+	"keywords": ["rbxts", "animation", "roblox"],
+	"license": "MIT",
+	"author": "ffrostfall",
+	"contributors": [
+		"Christopher Buss <christopher.buss@pm.me> (https://github.com/christopher-buss)"
+	],
+	"type": "module",
+	"types": [],
+	"files": [],
+	"scripts": {
+		"lint": "eslint --cache",
+		"lint:ci": "eslint --cache --cache-strategy content",
+		"prepack": "nr build",
+		"prepare": "simple-git-hooks",
+		"release": "bumpp"
+	},
+	"devDependencies": {
+		"@isentinel/eslint-config": "^4.3.0",
+		"jiti": "^2.6.1"
+	}
+}
