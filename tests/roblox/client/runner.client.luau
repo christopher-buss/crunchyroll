@@ -56,18 +56,18 @@ local function preview_roblox(rig, keyframe_sequence)
 end
 
 local function apply_cframe(character, rig)
-	character["Left Arm"].CFrame = rig.result_coordinate_frames["Left Arm"]
-	character["Right Arm"].CFrame = rig.result_coordinate_frames["Right Arm"]
+	character["Left Arm"].CFrame = rig.resultCoordinateFrames["Left Arm"]
+	character["Right Arm"].CFrame = rig.resultCoordinateFrames["Right Arm"]
 
-	character["Left Leg"].CFrame = rig.result_coordinate_frames["Left Leg"]
-	character["Right Leg"].CFrame = rig.result_coordinate_frames["Right Leg"]
+	character["Left Leg"].CFrame = rig.resultCoordinateFrames["Left Leg"]
+	character["Right Leg"].CFrame = rig.resultCoordinateFrames["Right Leg"]
 
-	character["Torso"].CFrame = rig.result_coordinate_frames["Torso"]
-	character["Head"].CFrame = rig.result_coordinate_frames["Head"]
+	character["Torso"].CFrame = rig.resultCoordinateFrames["Torso"]
+	character["Head"].CFrame = rig.resultCoordinateFrames["Head"]
 
 	local joint = character:FindFirstChild("ExtraJoint")
 	if joint then
-		joint.CFrame = rig.result_coordinate_frames["ExtraJoint"]
+		joint.CFrame = rig.resultCoordinateFrames["ExtraJoint"]
 	end
 end
 

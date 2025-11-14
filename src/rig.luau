@@ -25,7 +25,7 @@ export type Identity = {
 	--- used in animation loading to quickly map pose name to limb index
 	limb_name_to_index: { [string]: number },
 
-	result_coordinate_frames: { [string]: CFrame },
+	resultCoordinateFrames: { [string]: CFrame },
 }
 
 local function topological_sort(array: { Limb }, node: LimbInfo)
@@ -74,7 +74,7 @@ local function create_rig(root: LimbInfo): Identity
 		limb_transforms = limb_transforms,
 		limb_name_to_index = limb_name_to_index,
 
-		result_coordinate_frames = {},
+		resultCoordinateFrames = {},
 	}
 end
 
