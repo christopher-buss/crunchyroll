@@ -158,8 +158,8 @@ local function animation_solver(
 		end
 	end
 
-	local result_coordinate_frames: { [string]: CFrame } = rig.result_coordinate_frames
-	result_coordinate_frames["root"] = root
+	local resultCoordinateFrames: { [string]: CFrame } = rig.resultCoordinateFrames
+	resultCoordinateFrames["root"] = root
 
 	for index, limb in rig.limbs do
 		local limb_transform = limb_transforms[index]
@@ -174,7 +174,7 @@ local function animation_solver(
 			quat_vector.x, quat_vector.y, quat_vector.z, quat_scalar
 		)
 
-		result_coordinate_frames[limb.name] = result_coordinate_frames[limb.depends_on]
+		resultCoordinateFrames[limb.name] = resultCoordinateFrames[limb.depends_on]
 			* limb.c0
 			* transform
 			* limb.c1

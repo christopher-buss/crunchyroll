@@ -60,7 +60,7 @@ local rig = require("@self/rig")
 ]=]
 
 --[=[
-	@prop result_coordinate_frames { [string]: CFrame }
+	@prop resultCoordinateFrames { [string]: CFrame }
 	@within Rig
 	
 	The result table of the rig. Structured as { [limb name]: CFrame }
