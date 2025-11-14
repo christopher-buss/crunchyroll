@@ -11,6 +11,15 @@ importers:
       '@isentinel/eslint-config':
         specifier: ^4.3.0
         version: 4.3.0(@types/estree@1.0.8)(@typescript-eslint/utils@8.46.4(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint-plugin-jest@28.14.0(@typescript-eslint/eslint-plugin@8.46.4(@typescript-eslint/parser@8.46.4(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint-plugin-n@17.23.1(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint-plugin-react-naming-convention@2.3.5(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)
+      '@isentinel/tsconfig':
+        specifier: ^1.0.0
+        version: 1.0.0(typescript@5.9.3)
+      '@rbxts/compiler-types':
+        specifier: 3.0.0-types.0
+        version: 3.0.0-types.0
+      '@rbxts/types':
+        specifier: ^1.0.891
+        version: 1.0.891
       jiti:
         specifier: ^2.6.1
         version: 2.6.1
@@ -417,6 +426,12 @@ packages:
   '@isentinel/stylua@2.1.0-esm.3':
     resolution: {integrity: sha512-thwx7ptSzSGOZhzhxWD6cLOSYesk+5U3Ia/RzMrFc9djpv7LXe0spGCxJ/tWfYdJfg1ryU89rubdhhYxVlyMQg==}
 
+  '@isentinel/tsconfig@1.0.0':
+    resolution: {integrity: sha512-ENj7nEUeC1luRJ2t1QTwCyE5nRorF/kKH2xtnbFYlKCt/ILb3w1jJpwk6cgZhXPq8VEMvtEMeniHOyUwyloHvA==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      typescript: ^5.5.0
+
   '@napi-rs/wasm-runtime@0.2.12':
     resolution: {integrity: sha512-ZVWUcfwY4E/yPitQJl481FjFo3K22D6qF0DuFH6Y/nbnE11GY5uguDxZMGXPQ8WQ0128MXQD7TnfHyK4oWoIJQ==}
 
@@ -531,6 +546,12 @@ packages:
   '@prettier/plugin-oxc@0.0.4':
     resolution: {integrity: sha512-UGXe+g/rSRbglL0FOJiar+a+nUrst7KaFmsg05wYbKiInGWP6eAj/f8A2Uobgo5KxEtb2X10zeflNH6RK2xeIQ==}
     engines: {node: '>=14'}
+
+  '@rbxts/compiler-types@3.0.0-types.0':
+    resolution: {integrity: sha512-VGOHJPoL7+56NTatMGqQj3K7xWuzEV+aP4QD5vZiHu+bcff3kiTmtoadaF6NkJrmwfFAvbsd4Dg764ZjWNceag==}
+
+  '@rbxts/types@1.0.891':
+    resolution: {integrity: sha512-jgjnAeBWAvA2alGbdsxsRyYyCIA2JXXKk/SD84t2SMLZOewd9Qbnw1jHVhCZ8CXQLPjmOR3i6lbplqE/UpXC0g==}
 
   '@roblox-ts/luau-ast@2.0.1':
     resolution: {integrity: sha512-jej2mzRGwhR9wu4woAtgTwqsKADlegZYlQ+M5qVHRojvjoyJVFkLrSbhBKRr8HR+fVW5nCz0qX7kNa0tSpAY+A==}
@@ -3388,6 +3409,10 @@ snapshots:
     dependencies:
       rollup: 4.53.2
 
+  '@isentinel/tsconfig@1.0.0(typescript@5.9.3)':
+    dependencies:
+      typescript: 5.9.3
+
   '@napi-rs/wasm-runtime@0.2.12':
     dependencies:
       '@emnapi/core': 1.7.0
@@ -3461,6 +3486,10 @@ snapshots:
   '@prettier/plugin-oxc@0.0.4':
     dependencies:
       oxc-parser: 0.74.0
+
+  '@rbxts/compiler-types@3.0.0-types.0': {}
+
+  '@rbxts/types@1.0.891': {}
 
   '@roblox-ts/luau-ast@2.0.1': {}
 
