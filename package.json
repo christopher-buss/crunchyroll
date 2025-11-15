@@ -5,6 +5,10 @@
 	"keywords": ["rbxts", "animation", "roblox"],
 	"license": "MIT",
 	"author": "ffrostfall",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/christopher-buss/crunchyroll.git"
+	},
 	"contributors": [
 		"Christopher Buss <christopher.buss@pm.me> (https://github.com/christopher-buss)"
 	],
