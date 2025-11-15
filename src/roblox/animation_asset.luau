@@ -4,9 +4,9 @@ local rig = require("../rig")
 
 export type PoseNode = {
 	position: vector,
-	quat_vector: vector,
-	quat_scalar: number,
-	easing_function: (alpha: number) -> number,
+	quatVector: vector,
+	quatScalar: number,
+	easingFunction: (alpha: number) -> number,
 }
 
 --- [1] = previous keyframe index
@@ -20,9 +20,9 @@ type KeyframeNode = {
 }
 
 export type Identity = {
-	keyframe_times: { number },
-	keyframe_poses: { Poses },
-	keyframe_holes: { [number]: { KeyframeHole } },
+	keyframeTimes: { number },
+	keyframePoses: { Poses },
+	keyframeHoles: { [number]: { KeyframeHole } },
 	length: number,
 }
 
@@ -49,9 +49,9 @@ local function recursive_tree_from_pose(poses: { [string]: PoseNode }, root_pose
 	-- TODO weird type error
 	poses[root_pose.Name] = {
 		position = position,
-		quat_vector = quat_vector,
-		quat_scalar = quat_scalar,
-		easing_function = easing_enum_map[root_pose.EasingStyle][root_pose.EasingDirection],
+		quatVector = quat_vector,
+		quatScalar = quat_scalar,
+		easingFunction = easing_enum_map[root_pose.EasingStyle][root_pose.EasingDirection],
 	}
 end
 
@@ -86,7 +86,7 @@ function animation_asset.load_keyframe_sequence(
 		return left.time < right.time
 	end)
 
-	local limb_name_to_index = rig.limb_name_to_index
+	local limb_name_to_index = rig.limbNameToIndex
 	local keframe_holes: { [number]: { KeyframeHole } } = {}
 
 	-- previous keyframe that had no holes, [limb_index]: keyframe_node_index
@@ -99,9 +99,9 @@ function animation_asset.load_keyframe_sequence(
 			if index == 1 and node.poses[limb_name] == nil then
 				node.poses[limb_name] = {
 					position = vector.zero,
-					quat_vector = vector.zero,
-					quat_scalar = 1,
-					easing_function = easing.linear,
+					quatVector = vector.zero,
+					quatScalar = 1,
+					easingFunction = easing.linear,
 				}
 			end
 
@@ -163,10 +163,10 @@ function animation_asset.load_keyframe_sequence(
 	end
 
 	return {
-		keyframe_times = keyframe_times,
-		keyframe_poses = keyframe_poses,
+		keyframeTimes = keyframe_times,
+		keyframePoses = keyframe_poses,
 		length = length,
-		keyframe_holes = keframe_holes,
+		keyframeHoles = keframe_holes,
 	}
 end
 
