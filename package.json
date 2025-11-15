@@ -12,8 +12,8 @@
 	"exports": {
 		".": {
 			"types": "./src/index.d.ts",
-			"import": "./src/index.js",
-			"require": "./src/index.cjs"
+			"import": "./src/init.luau",
+			"default": "./src/init.luau"
 		}
 	},
 	"types": "src/index.d.ts",
