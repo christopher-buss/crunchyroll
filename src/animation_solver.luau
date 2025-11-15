@@ -6,8 +6,8 @@ export type AnimationTrack = {
 	alpha: number,
 
 	-- 0-1
-	start_fade_time: number,
-	stop_fade_time: number,
+	startFadeTime: number,
+	stopFadeTime: number,
 	weight: number,
 
 	-- arbitrary number
@@ -55,8 +55,8 @@ local function animation_solver(
 	},
 	root: CFrame
 )
-	local limb_transforms = rig.limb_transforms
-	for _, limb in limb_transforms do
+	local limbTransforms = rig.limbTransforms
+	for _, limb in limbTransforms do
 		limb.priority = -1
 	end
 
@@ -72,13 +72,13 @@ local function animation_solver(
 			* solve_fade_time_influence(
 				real_time,
 				animation.length,
-				playback.start_fade_time,
-				playback.stop_fade_time
+				playback.startFadeTime,
+				playback.stopFadeTime
 			)
 
 		-- Figure out which keyframes to interpolate between
 
-		local keyframe_times = animation.keyframe_times
+		local keyframe_times = animation.keyframeTimes
 
 		local high: number = #keyframe_times
 		local low: number = 1
@@ -95,11 +95,11 @@ local function animation_solver(
 
 		local pose_time_after: number? = keyframe_times[high + 1]
 		local pose_time_before: number? = keyframe_times[high]
-		local poses_before: animation_asset.Poses? = animation.keyframe_poses[high]
-		local poses_after: animation_asset.Poses? = animation.keyframe_poses[high + 1]
+		local poses_before: animation_asset.Poses? = animation.keyframePoses[high]
+		local poses_after: animation_asset.Poses? = animation.keyframePoses[high + 1]
 
 		-- Solve limb transforms
-		for index, node in limb_transforms do
+		for index, node in limbTransforms do
 			if node.priority > priority then
 				continue
 			end
@@ -108,38 +108,38 @@ local function animation_solver(
 			local left_pose = poses_before and poses_before[index]
 			local time_before = pose_time_before
 			if left_pose == nil then
-				local left_pose_pointer = if animation.keyframe_holes[index]
-					then animation.keyframe_holes[index][high][1]
+				local left_pose_pointer = if animation.keyframeHoles[index]
+					then animation.keyframeHoles[index][high][1]
 					else 1
 
-				left_pose = animation.keyframe_poses[left_pose_pointer][index]
+				left_pose = animation.keyframePoses[left_pose_pointer][index]
 				time_before = keyframe_times[left_pose_pointer]
 			end
 
 			local right_pose = poses_after and poses_after[index]
 			local time_after = pose_time_after
-			local pointer = animation.keyframe_holes[index]
-				and animation.keyframe_holes[index][high + 1]
+			local pointer = animation.keyframeHoles[index]
+				and animation.keyframeHoles[index][high + 1]
 			if pointer then
 				local right_pose_pointer = pointer[2]
-				right_pose = animation.keyframe_poses[right_pose_pointer][index]
+				right_pose = animation.keyframePoses[right_pose_pointer][index]
 				time_after = keyframe_times[right_pose_pointer]
 			end
 
 			--stylua: ignore start
 			if left_pose and right_pose  then
-				local alpha = left_pose.easing_function((real_time - (time_before :: number)) / ((time_after :: number) - (time_before :: number)))
+				local alpha = left_pose.easingFunction((real_time - (time_before :: number)) / ((time_after :: number) - (time_before :: number)))
 				local position = vector.lerp(left_pose.position, right_pose.position, alpha)
 
 				local quat_vector, quat_scalar = quat_nlerp(
-					left_pose.quat_vector, left_pose.quat_scalar,
-					right_pose.quat_vector, right_pose.quat_scalar,
+					left_pose.quatVector, left_pose.quatScalar,
+					right_pose.quatVector, right_pose.quatScalar,
 					alpha
 				)
 
 				node.position = vector.lerp(node.position, position, influence)
-				node.quat_vector, node.quat_scalar = quat_nlerp(
-					node.quat_vector, node.quat_scalar,
+				node.quatVector, node.quatScalar = quat_nlerp(
+					node.quatVector, node.quatScalar,
 					quat_vector, quat_scalar,
 					influence
 				)
@@ -148,9 +148,9 @@ local function animation_solver(
 			elseif left_pose then
 				node.position = vector.lerp(node.position, left_pose.position, influence)
 
-				node.quat_vector, node.quat_scalar = quat_nlerp(
-					node.quat_vector, node.quat_scalar,
-					left_pose.quat_vector, left_pose.quat_scalar, influence
+				node.quatVector, node.quatScalar = quat_nlerp(
+					node.quatVector, node.quatScalar,
+					left_pose.quatVector, left_pose.quatScalar, influence
 				)
 				node.priority = priority
 			end
@@ -162,11 +162,11 @@ local function animation_solver(
 	resultCoordinateFrames["root"] = root
 
 	for index, limb in rig.limbs do
-		local limb_transform = limb_transforms[index]
+		local limbTransform = limbTransforms[index]
 
-		local position = limb_transform.position
-		local quat_vector = limb_transform.quat_vector
-		local quat_scalar = limb_transform.quat_scalar
+		local position = limbTransform.position
+		local quat_vector = limbTransform.quatVector
+		local quat_scalar = limbTransform.quatScalar
 
 		--stylua: ignore
 		local transform = CFrame.new(
@@ -174,7 +174,7 @@ local function animation_solver(
 			quat_vector.x, quat_vector.y, quat_vector.z, quat_scalar
 		)
 
-		resultCoordinateFrames[limb.name] = resultCoordinateFrames[limb.depends_on]
+		resultCoordinateFrames[limb.name] = resultCoordinateFrames[limb.dependsOn]
 			* limb.c0
 			* transform
 			* limb.c1

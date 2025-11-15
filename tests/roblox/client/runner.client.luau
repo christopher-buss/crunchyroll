@@ -144,11 +144,11 @@ do
 		apply_cframe(character, rig)
 
 		for index, joint in rig.limbs do
-			local limb_transform = rig.limb_transforms[index]
+			local limb_transform = rig.limbTransforms[index]
 
 			local position = limb_transform.position
-			local quat_vector = limb_transform.quat_vector
-			local quat_scalar = limb_transform.quat_scalar
+			local quat_vector = limb_transform.quatVector
+			local quat_scalar = limb_transform.quatScalar
 
 			local transform = CFrame.new(
 				position.x,
