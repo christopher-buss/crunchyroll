@@ -9,21 +9,21 @@ export type Limb = {
 	name: string,
 	c0: CFrame,
 	c1: CFrame,
-	depends_on: string,
+	dependsOn: string,
 }
 
 export type LimbTransform = {
 	priority: number,
 	position: vector,
-	quat_vector: vector,
-	quat_scalar: number,
+	quatVector: vector,
+	quatScalar: number,
 }
 
 export type Identity = {
 	limbs: { Limb },
-	limb_transforms: { LimbTransform },
+	limbTransforms: { LimbTransform },
 	--- used in animation loading to quickly map pose name to limb index
-	limb_name_to_index: { [string]: number },
+	limbNameToIndex: { [string]: number },
 
 	resultCoordinateFrames: { [string]: CFrame },
 }
@@ -36,7 +36,7 @@ local function topological_sort(array: { Limb }, node: LimbInfo)
 	for _, value in node.children do
 		table.insert(array, {
 			name = value.name,
-			depends_on = node.name,
+			dependsOn = node.name,
 			c0 = value.c0,
 			c1 = value.c1:Inverse(),
 		})
@@ -49,30 +49,30 @@ local function create_rig(root: LimbInfo): Identity
 	local limbs: { Limb } = {}
 	table.insert(limbs, {
 		name = root.name,
-		depends_on = "root",
+		dependsOn = "root",
 		c0 = root.c0,
 		c1 = root.c1:Inverse(),
 	})
 
 	topological_sort(limbs, root)
 
-	local limb_transforms: { LimbTransform } = {}
-	local limb_name_to_index: { [string]: number } = {}
+	local limbTransforms: { LimbTransform } = {}
+	local limbNameToIndex: { [string]: number } = {}
 
 	for index, limb in limbs do
-		limb_transforms[index] = {
+		limbTransforms[index] = {
 			priority = -1,
 			position = vector.zero,
-			quat_vector = vector.zero,
-			quat_scalar = 1,
+			quatVector = vector.zero,
+			quatScalar = 1,
 		}
-		limb_name_to_index[limb.name] = index
+		limbNameToIndex[limb.name] = index
 	end
 
 	return {
 		limbs = limbs,
-		limb_transforms = limb_transforms,
-		limb_name_to_index = limb_name_to_index,
+		limbTransforms = limbTransforms,
+		limbNameToIndex = limbNameToIndex,
 
 		resultCoordinateFrames = {},
 	}
