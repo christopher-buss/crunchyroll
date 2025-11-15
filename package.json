@@ -1,6 +1,6 @@
 {
 	"name": "@rbxts/crunchyroll",
-	"version": "0.1.1-ts1",
+	"version": "0.1.1-ts.1",
 	"description": "A custom animation solver for Roblox.",
 	"keywords": ["rbxts", "animation", "roblox"],
 	"license": "MIT",
