@@ -31,7 +31,7 @@ local rig = require("@self/rig")
 --[=[
 	@function solve_animation
 	@within Crunchyroll
-	
+
 	The primary function of the module. This will solve the animation for a rig.
 	Example:
 	```lua
@@ -47,10 +47,11 @@ local rig = require("@self/rig")
 			},
 		}, character.HumanoidRootPart.CFrame)
 	```
-	
+
 	@param rig Rig
 	@param tracks { [AnimationAsset]: AnimationTrack }
 	@param root CFrame
+	@param skip_result_coordinate_frames boolean?
 ]=]
 
 --[=[

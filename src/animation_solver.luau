@@ -53,7 +53,8 @@ local function animation_solver(
 	tracks: {
 		[animation_asset.Identity]: AnimationTrack,
 	},
-	root: CFrame
+	root: CFrame,
+	skip_result_coordinate_frames: boolean?
 )
 	local limb_transforms = rig.limb_transforms
 	for _, limb in limb_transforms do
@@ -158,26 +159,28 @@ local function animation_solver(
 		end
 	end
 
-	local result_coordinate_frames: { [string]: CFrame } = rig.result_coordinate_frames
-	result_coordinate_frames["root"] = root
+	if not skip_result_coordinate_frames then
+		local result_coordinate_frames: { [string]: CFrame } = rig.result_coordinate_frames
+		result_coordinate_frames["root"] = root
 
-	for index, limb in rig.limbs do
-		local limb_transform = limb_transforms[index]
+		for index, limb in rig.limbs do
+			local limb_transform = limb_transforms[index]
 
-		local position = limb_transform.position
-		local quat_vector = limb_transform.quat_vector
-		local quat_scalar = limb_transform.quat_scalar
+			local position = limb_transform.position
+			local quat_vector = limb_transform.quat_vector
+			local quat_scalar = limb_transform.quat_scalar
 
-		--stylua: ignore
-		local transform = CFrame.new(
-			position.x, position.y, position.z,
-			quat_vector.x, quat_vector.y, quat_vector.z, quat_scalar
-		)
+			--stylua: ignore
+			local transform = CFrame.new(
+				position.x, position.y, position.z,
+				quat_vector.x, quat_vector.y, quat_vector.z, quat_scalar
+			)
 
-		result_coordinate_frames[limb.name] = result_coordinate_frames[limb.depends_on]
-			* limb.c0
-			* transform
-			* limb.c1
+			result_coordinate_frames[limb.name] = result_coordinate_frames[limb.depends_on]
+				* limb.c0
+				* transform
+				* limb.c1
+		end
 	end
 end
 
