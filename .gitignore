@@ -5,6 +5,7 @@ build
 
 # Rojo
 sourcemap.json
+darklua-sourcemap.json
 build.rbxl
 build.rbxl.lock
 
@@ -17,3 +18,4 @@ globalTypes.d.luau
 
 node_modules
 .eslintcache
+dist

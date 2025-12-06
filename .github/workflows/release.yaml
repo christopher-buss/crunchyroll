@@ -11,6 +11,26 @@ jobs:
       contents: write
       id-token: write
 
-    uses: sxzz/workflows/.github/workflows/release.yml@v1
-    with:
-      publish: true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup JS
+        uses: sxzz/workflows/setup-js@v1
+        with:
+          fetch-all: true
+
+      - name: Install Rokit
+        uses: CompeyDev/setup-rokit@v0.1.2
+
+      - name: Darklua Process
+        run: lune run .lune/process.luau
+
+      - continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        name: Generate GitHub Changelog
+        run: pnpx changelogithub
+
+      - name: Publish to NPM
+        run: pnpm publish --access public --no-git-checks --tag latest
+        working-directory: ./dist

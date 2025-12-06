@@ -7,3 +7,5 @@ luaulsp = "JohnnyMorganz/luau-lsp@1.56.0"
 # TODO: Create Lute type definitions & switch away from Lune
 # TODO: Do Lute FFI & Roblox package & switch away from Lune
 lune = "lune-org/lune@0.9.4"
+
+darklua = "seaofvoices/darklua@0.17.3"
