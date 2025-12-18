@@ -25,14 +25,14 @@ export interface Identity {
 
 /** Information about a limb in the rig. */
 export interface Limb {
+	/** Name of the limb. */
+	name: string;
 	/** The C0 CFrame of the joint. */
 	c0: CFrame;
 	/** The C1 CFrame of the joint. */
 	c1: CFrame;
 	/** Name of the limb this limb depends on. */
 	dependsOn: string;
-	/** Name of the limb. */
-	name: string;
 }
 
 /**
@@ -40,14 +40,14 @@ export interface Limb {
  * in the character skeleton.
  */
 export interface LimbInfo {
+	/** Name of the limb/joint. */
+	name: string;
 	/** The C0 CFrame of the joint. */
 	c0: CFrame;
 	/** The C1 CFrame of the joint. */
 	c1: CFrame;
 	/** Optional child limbs in the hierarchy. */
 	children?: Array<LimbInfo>;
-	/** Name of the limb/joint. */
-	name: string;
 }
 
 /** Transform data for a limb during animation. */

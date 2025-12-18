@@ -1,2 +1,8 @@
+catalogMode: prefer
+cleanupUnusedCatalogs: true
+
 publicHoistPattern:
   - "*@rbxts*"
+
+shellEmulator: true
+trustPolicy: no-downgrade

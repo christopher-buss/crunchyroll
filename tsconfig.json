@@ -1,3 +1,7 @@
 {
-	"extends": "@isentinel/tsconfig/roblox"
+	"extends": "@isentinel/tsconfig/roblox",
+	"compilerOptions": {
+		"baseUrl": null,
+		"paths": { "*": ["./src/*"] }
+	}
 }

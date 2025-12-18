@@ -10,7 +10,11 @@
 	"license": "MIT",
 	"author": "ffrostfall",
 	"contributors": [
-		"Christopher Buss <christopher.buss@pm.me> (https://github.com/christopher-buss)"
+		{
+			"name": "Christopher Buss",
+			"email": "christopher.buss@pm.me",
+			"url": "https://github.com/christopher-buss"
+		}
 	],
 	"type": "module",
 	"exports": {
@@ -28,11 +32,13 @@
 		"release": "bumpp"
 	},
 	"devDependencies": {
-		"@isentinel/eslint-config": "^4.3.0",
-		"@isentinel/tsconfig": "^1.0.0",
+		"@isentinel/eslint-config": "^4.6.0",
+		"@isentinel/tsconfig": "^1.1.0",
 		"@rbxts/compiler-types": "3.0.0-types.0",
 		"@rbxts/types": "^1.0.891",
 		"bumpp": "^10.3.1",
+		"eslint": "^9.39.2",
+		"eslint-plugin-pnpm": "^1.4.3",
 		"jiti": "^2.6.1"
 	},
 	"packageManager": "pnpm@10.22.0+sha512.bf049efe995b28f527fd2b41ae0474ce29186f7edcb3bf545087bd61fbbebb2bf75362d1307fda09c2d288e1e499787ac12d4fcb617a974718a6051f2eee741c",

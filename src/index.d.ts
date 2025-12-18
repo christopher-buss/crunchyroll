@@ -47,11 +47,15 @@ export function loadKeyframeSequence(keyframeSequence: KeyframeSequence, rig: Ri
  * @param tracks - Map of AnimationAsset to AnimationTrack describing which
  *   animations to play.
  * @param root - The root CFrame to use as the base transform.
+ * @param skipResultCoordinateFrames - If true, the resultCoordinateFrames map
+ *   on the rig will not be populated. This can be used to improve performance
+ *   if the resultCoordinateFrames are not needed.
  */
 export function solveAnimation(
 	rig: Rig,
 	tracks: Map<AnimationAsset, AnimationTrack>,
 	root: CFrame,
+	skipResultCoordinateFrames?: boolean,
 ): void;
 
 export type { AnimationTrack } from "./animation-solver";
