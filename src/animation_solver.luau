@@ -171,23 +171,24 @@ local function animation_solver(
 		local resultCoordinateFrames: { [string]: CFrame } = rig.resultCoordinateFrames
 		resultCoordinateFrames["root"] = root
 
-	for index, limb in rig.limbs do
-		local limb_transform = limb_transforms[index]
+		for index, limb in rig.limbs do
+			local limbTransform = limbTransforms[index]
 
-		local position = limb_transform.position
-		local quat_vector = limb_transform.quat_vector
-		local quat_scalar = limb_transform.quat_scalar
+			local position = limbTransform.position
+			local quat_vector = limbTransform.quatVector
+			local quat_scalar = limbTransform.quatScalar
+			
+			--stylua: ignore
+			local transform = CFrame.new(
+				position.x, position.y, position.z,
+				quat_vector.x, quat_vector.y, quat_vector.z, quat_scalar
+			)
 
-		--stylua: ignore
-		local transform = CFrame.new(
-			position.x, position.y, position.z,
-			quat_vector.x, quat_vector.y, quat_vector.z, quat_scalar
-		)
-
-		resultCoordinateFrames[limb.name] = resultCoordinateFrames[limb.depends_on]
-			* limb.c0
-			* transform
-			* limb.c1
+			resultCoordinateFrames[limb.name] = resultCoordinateFrames[limb.dependsOn]
+				* limb.c0
+				* transform
+				* limb.c1
+		end
 	end
 end
 
